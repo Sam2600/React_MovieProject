@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { searchMovie } from "../features/MovieSlice";
 
+
 const SearchInput = () => {
 
   const dispatch = useDispatch();
@@ -8,7 +9,7 @@ const SearchInput = () => {
   return (
     <div>
       <input
-        className="border-b-4 mt-10 px-2 py-1 rounded-md shadow-sm"
+        className=" mt-10 border border-solid px-2 py-1 rounded-md shadow-lg"
         placeholder="search movies"
         type="search"
         onChange={(e) => dispatch(searchMovie(e.target.value))}
