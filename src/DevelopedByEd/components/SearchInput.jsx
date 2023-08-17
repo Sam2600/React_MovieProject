@@ -9,7 +9,7 @@ const SearchInput = () => {
   return (
     <div>
       <input
-        className=" mt-10 border border-solid px-2 py-1 rounded-md shadow-lg"
+        className=" mt-12 border border-solid px-2 py-1 rounded-md shadow-lg"
         placeholder="search movies"
         type="search"
         onChange={(e) => dispatch(searchMovie(e.target.value))}

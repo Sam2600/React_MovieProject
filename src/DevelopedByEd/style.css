@@ -1,0 +1,21 @@
+.links:hover {
+     font-size: 25px;
+     text-decoration: underline;
+     transition: font-size 0.3s;
+}
+
+.active {
+     /* color: greenyellow; */
+     color: darkgray;
+     text-decoration: underline;
+     font-size: 24px;
+     font-weight: bold;
+}
+
+.prev:hover {
+     color: darkgray;
+}
+
+.next:hover {
+     color: darkgray;
+}

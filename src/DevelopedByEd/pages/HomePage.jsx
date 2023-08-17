@@ -5,18 +5,17 @@ import MovieCard from "../components/MovieCard";
 
 import {
   currentStatus,
-  filteredMovies,
 } from "../features/MovieSlice";
 
 import { motion, AnimatePresence } from "framer-motion";
 
 import { useSelector } from "react-redux";
 import SearchInput from "../components/SearchInput";
+import Movies from "../components/Movies";
 
 const HomePage = () => {
 
   const status = useSelector(currentStatus);
-  const filteredMvs = useSelector(filteredMovies);
 
   let content;
 
@@ -27,11 +26,9 @@ const HomePage = () => {
   if (status === "failed") {
     content = <Failed />;
   }
-  
+
   if (status === "success") {
-    content = filteredMvs.map((movie) => (
-      <MovieCard key={movie.id} {...movie} />
-    ));
+    content = <Movies />
   }
 
   return (
@@ -52,9 +49,7 @@ const HomePage = () => {
         viewport={{ once: true }}
       >
         <AnimatePresence>
-          <div className="flex flex-wrap my-7 items-center justify-center">
-            {content}
-          </div>
+          {content}
         </AnimatePresence>
       </motion.div>
 
@@ -64,21 +59,3 @@ const HomePage = () => {
 
 export default HomePage;
 
-/* 
-  const handlePageClick = (e) => {
-    const newOffset = (e.selected*itemsPerPage) % items.length
-    setItemOffset(newOffset)
-  }
-*/
-
-/*
-  <ReactPaginate
-    breakLabel="..."
-    nextLabel="next >"
-    onPageChange={handlePageClick}
-    pageRangeDisplayed={5}
-    pageCount={pageCount}
-    previousLabel="< previous"
-    renderOnZeroPageCount={null}
-  />
-*/
