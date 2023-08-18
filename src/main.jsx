@@ -3,11 +3,12 @@ import "./index.css";
 import HomePage from "./DevelopedByEd/pages/HomePage";
 import { Provider } from "react-redux";
 import { store } from "./DevelopedByEd/app/store";
-import { fetchMovies } from "./DevelopedByEd/features/MovieSlice";
+import { fetchGenres, fetchMovies } from "./DevelopedByEd/features/MovieSlice";
 import { RouterProvider } from "react-router-dom";
-import {routes} from "./DevelopedByEd/Routes/Route"
+import { routes } from "./DevelopedByEd/Routes/Route";
 
 store.dispatch(fetchMovies());
+store.dispatch(fetchGenres());
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   //<React.StrictMode>

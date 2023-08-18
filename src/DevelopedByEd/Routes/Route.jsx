@@ -1,6 +1,7 @@
 import { createBrowserRouter, Link} from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import DefaultLayout from "../Layout/DefaultLayout";
+import MovieDetails from "../pages/MovieDetails";
 
 export const routes = createBrowserRouter([
   {
@@ -11,11 +12,15 @@ export const routes = createBrowserRouter([
         path: "/",
         element: <HomePage />,
       },
+      {
+        path: "/movies/:id",
+        element: <MovieDetails />
+      }
     ],
   },
 
   {
-    path: "*",
+    path: "/*",
     element: (
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-3xl text-black my-14">

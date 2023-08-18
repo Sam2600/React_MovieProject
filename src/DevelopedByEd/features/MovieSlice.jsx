@@ -7,6 +7,7 @@ const initialState = {
   status: "idle",
   movies: [],
   filterdMovies: [],
+  genres: [],
 };
 
 export const fetchMovies = createAsyncThunk("movies/fetchMovies", async () => {
@@ -18,12 +19,20 @@ export const fetchMovies = createAsyncThunk("movies/fetchMovies", async () => {
   return response.data;
 });
 
-const MovieSlice = createSlice({
+export const fetchGenres = createAsyncThunk("/genres/fetchGenres", async () => {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/genre/movie/list?api_key=${
+      import.meta.env.VITE_MOVIE_API_KEY
+    }&language=en-US`
+  );
+  return response.data;
+});
 
+const MovieSlice = createSlice({
   name: "movie",
   initialState,
-  reducers: {
 
+  reducers: {
     filter: (state, action) => {
       if (action.payload === 0) {
         state.filterdMovies = state.movies;
@@ -37,7 +46,6 @@ const MovieSlice = createSlice({
     },
 
     searchMovie: (state, action) => {
-
       if (action.payload === "") {
         state.filterdMovies = state.movies;
       }
@@ -50,7 +58,6 @@ const MovieSlice = createSlice({
 
       state.filterdMovies = searched;
     },
-    
   },
 
   extraReducers: (builer) => {
@@ -69,6 +76,10 @@ const MovieSlice = createSlice({
       .addCase(fetchMovies.rejected, (state, action) => {
         console.log(action.error);
         state.status = "failed";
+      })
+
+      .addCase(fetchGenres.fulfilled, (state, action) => {
+        state.genres = action.payload.genres;
       });
   },
 });
@@ -77,6 +88,9 @@ export const selectAllMovies = (state) => state.movie.movies;
 export const currentStatus = (state) => state.movie.status;
 export const filteredMovies = (state) => state.movie.filterdMovies;
 export const genere_id = (state) => state.movie.genere_id;
+export const genres = (state) => state.movie.genres;
+export const searchedMovieById = (state, movieId) =>
+  state.movie.movies.find((movie) => movie.id === movieId);
 
 export default MovieSlice.reducer;
 export const { filter, searchMovie } = MovieSlice.actions;
