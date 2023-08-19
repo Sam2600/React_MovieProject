@@ -39,20 +39,18 @@ const MovieDetails = () => {
     (movie) => movie.genres.length
   ); // then we filter the objects that are empty inside the genres array (means that movie is not match the genres with this current movie)
 
-  console.log(movie)
   return (
-    <div className="w-11/12 m-auto flex">
+    <div className="flex flex-wrap w-11/12 mt-5">
 
       <motion.div
-        className="flex flex-col w-5/12 mx-10 px-10"
+        className="flex flex-col min-w-custom w-4/12 px-10 m-auto"
         initial={{ opacity: 0, x: "-100vw" }}
         animate={{ opacity: 1, x: 0, transition: { duration: 1.2 } }}
-        exit={{opacity:0}}
+        exit={{ opacity: 0 }}
       >
         <div className="my-5 w-full">
-          <h1 className="text-xl mb-5">{movie?.title}</h1>
           <img
-            className="rounded-md w-full"
+            className="rounded-md h-48 w-full"
             src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
             alt={movie?.title}
           />
@@ -93,57 +91,63 @@ const MovieDetails = () => {
       </motion.div>
 
       <motion.div
-        className="flex flex-col w-7/12 justify-between"
+        className="flex-col my-10 w-8/12 flex justify-between m-auto px-10"
         initial={{ opacity: 0, x: "100vw" }}
         animate={{ opacity: 1, x: 0, transition: { duration: 1.2 } }}
-        exit={{opacity:0}}
+        exit={{ opacity: 0 }}
       >
         <div>
           <h1 className="text-2xl my-5"> Movie&apos;s overview</h1>
-          <p></p>
-          <p></p>
-          <p></p>
+          <p className="text-lg mb-5"> <span className="text-slate-600">Movie name</span>: &nbsp; {movie?.title}</p>
         </div>
         <div>
           <p className="leading-8">{movie?.overview}</p>
         </div>
 
-        <div className="my-10">
-          <h1 className="text-2xl hover:text-slate-400 hover:cursor-pointer">
+        <div className="flex-col">
+
+          <h1 className="text-2xl my-5 hover:text-slate-500 hover:cursor-pointer">
             Movies You might also like..
           </h1>
 
-          <Splide
-            options={{
-              perPage: 4,
-              pagination: false,
-              arrows: false,
-              drag: "free",
-              gap: "5px",
-            }}
-          >
-            <div className="flex my-5">
+          <section className="flex">
+            <Splide
+              options={{
+                arrows: false,
+                drag: "free",
+                perPage: 4,
+                pagination: false,
+                rewind: true,
+              }}>
+
               {youMightAlsoLikeMovies.map((movie) => {
                 return (
+
                   <SplideSlide key={movie?.movieId}>
-                    <Link to={`/movies/${movie?.movieId}`}>
-                      <div className="w-40 mx-3">
-                        <img
-                          className="rounded-md"
-                          src={`https://image.tmdb.org/t/p/w500${movie?.image}`}
-                          alt={movie?.title}
-                        />
-                      </div>
+                    <div class="group relative mx-2">
+                      <img className="w-full rounded-md transition-all duration-500 hover:opacity-80"
+                        src={`https://image.tmdb.org/t/p/w500${movie?.image}`}
+                        alt={movie?.title}
+                      />
+                      <Link to={`/movies/${movie?.movieId}`}>
+                      <p class="hidden opacity-70 group-hover:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-slate-50 text-black py-2 px-4 rounded-lg">
+                        View
+                      </p>
                     </Link>
+                  </div>
+
                   </SplideSlide>
-                );
+
+            );
               })}
-            </div>
           </Splide>
-        </div>
-      </motion.div>
+        </section>
+
 
     </div>
+      </motion.div >
+
+    </div >
   );
 };
 

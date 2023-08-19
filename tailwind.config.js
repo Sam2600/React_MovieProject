@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      minWidth: {
+        'custom': '400px', // Define a custom minimum width class
+      },
+    },
   },
   plugins: [],
 }

@@ -7,4 +7,9 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
+  user-select: none;
 }
+
+/* body{
+  background-color: rgba(45, 45, 45, 0.88);
+} */

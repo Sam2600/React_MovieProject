@@ -3,15 +3,16 @@ import Failed from "../components/Failed";
 import Loading from "../components/Loading";
 
 import { currentStatus } from "../features/MovieSlice";
-
 import { motion, AnimatePresence } from "framer-motion";
-
 import { useSelector } from "react-redux";
-import SearchInput from "../components/SearchInput";
 import Movies from "../components/Movies";
-import { SideBar } from "../components/SideBar";
+import { useState } from "react";
+
 
 const HomePage = () => {
+
+  const [isActive, setIsActive] = useState(true)
+
   const status = useSelector(currentStatus);
 
   let content;
@@ -29,16 +30,9 @@ const HomePage = () => {
   }
 
   return (
-    <div className="flex h-screen">
+      <div className=" w-10/12 m-auto my-5 flex flex-col items-center justify-center">
 
-      <SideBar />
-
-      <div className="w-10/12 m-auto my-5 flex flex-col items-center justify-center">
-        <h1 className="text-2xl text-blue-600">Movie Nerds</h1>
-
-        <Buttons />
-
-        <SearchInput />
+        <Buttons isActive={isActive} setIsActive={setIsActive} />
 
         <motion.div
           layout
@@ -49,8 +43,8 @@ const HomePage = () => {
         >
           <AnimatePresence>{content}</AnimatePresence>
         </motion.div>
+        
       </div>
-    </div>
   );
 };
 

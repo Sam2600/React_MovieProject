@@ -6,6 +6,7 @@ import { store } from "./DevelopedByEd/app/store";
 import { fetchGenres, fetchMovies } from "./DevelopedByEd/features/MovieSlice";
 import { RouterProvider } from "react-router-dom";
 import { routes } from "./DevelopedByEd/Routes/Route";
+import { ProSidebarProvider } from "react-pro-sidebar";
 
 store.dispatch(fetchMovies());
 store.dispatch(fetchGenres());
@@ -13,9 +14,11 @@ store.dispatch(fetchGenres());
 ReactDOM.createRoot(document.getElementById("root")).render(
   //<React.StrictMode>
   <Provider store={store}>
-    <RouterProvider router={routes}>
-      <HomePage />
-    </RouterProvider>
+    <ProSidebarProvider>
+      <RouterProvider router={routes}>
+        <HomePage />
+      </RouterProvider>
+    </ProSidebarProvider>
   </Provider>
   //</React.StrictMode>,
 );

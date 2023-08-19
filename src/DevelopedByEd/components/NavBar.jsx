@@ -1,17 +1,28 @@
 import { Link } from "react-router-dom";
-import { FaHome } from "react-icons/fa";
-const NavBar = () => {
+import { FaHome, FaHamburger } from "react-icons/fa";
+import SearchInput from "./SearchInput";
+
+const NavBar = ({collapsed, setCollapsed}) => {
+
   return (
-    <nav className="bg-slate-300 flex items-center justify-between p-5 sticky top-0">
 
-      <Link
-        className="flex justify-center items-center ps-16 transition-all duration-150 hover:text-white"
-        to="/"
-      >
-        <FaHome /> &nbsp; <h1 className="text-xl">Main Page</h1>
-      </Link>
+    <nav className="bg-slate-300 flex items-center justify-between p-3">
 
-      <ul className="flex pe-16 gap-5 text-lg">
+      <div className="flex gap-5 items-center ps-5">
+
+        <FaHamburger className="cursor-pointer hover:text-slate-50" onClick={() => setCollapsed(!collapsed)} />
+
+        <Link
+          className="flex justify-center items-center transition-all duration-150 hover:text-white"
+          to="/"
+        >
+          <FaHome size={20} /> &nbsp; <p className="text-lg">Main Page</p>
+        </Link>
+      </div>
+
+      <SearchInput />
+
+      <ul className="flex gap-5 text-lg pe-5">
         <li className="transition-all flex items-center justify-center duration-150 hover:text-white">
           <button>Popular</button>
         </li>

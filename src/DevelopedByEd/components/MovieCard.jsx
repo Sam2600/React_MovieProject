@@ -12,14 +12,15 @@ const MovieCard = ({ ...movie }) => {
       viewport={{ once: true }}
     >
       <AnimatePresence>
-        <div className=" p-2 flex flex-col gap-2 w-60 h-52 mx-5 my-5 border shadow-md m-auto transition-all duration-200 hover:cursor-pointer">
-          <h1 className="text-md">{ movie.title.length > 20 ? `${movie.title.substring(0,20)}...` : movie.title }</h1>
-          <img
-            className=""
-            src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-            alt={movie.title}
-          />
-          <Link className="hover:text-slate-500" to={`/movies/${movie.id}`}>View Details</Link>
+        <div className="flex-col w-60 h-44 mx-5 my-5 rounded-lg border shadow-md m-auto transition-all duration-200 hover:cursor-pointer hover:scale-105">
+          <h1 className="text-md my-2 px-2">{movie.title.length > 20 ? `${movie.title.substring(0, 20)}...` : movie.title}</h1>
+          <Link to={`/movies/${movie.id}`}>
+            <img
+              className="px-2"
+              src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+              alt={movie.title}
+            />
+          </Link>
         </div>
       </AnimatePresence>
     </motion.div>
