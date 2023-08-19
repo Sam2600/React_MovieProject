@@ -40,15 +40,15 @@ const MovieDetails = () => {
   ); // then we filter the objects that are empty inside the genres array (means that movie is not match the genres with this current movie)
 
   return (
-    <div className="flex flex-wrap w-11/12 mt-5">
+    <div className="flex flex-wrap w-11/12 p-2">
 
       <motion.div
-        className="flex flex-col min-w-custom w-4/12 px-10 m-auto"
+        className="min-w-custom flex flex-col w-4/12 sm:flex-col sm:w-8/12 sm:ms-12 md:flex-row md:gap-3 md:w-11/12 lg:flex-col lg:my-5 lg:w-4/12 px-10 m-auto"
         initial={{ opacity: 0, x: "-100vw" }}
         animate={{ opacity: 1, x: 0, transition: { duration: 1.2 } }}
         exit={{ opacity: 0 }}
       >
-        <div className="my-5 w-full">
+        <div className="my-5 w-full sm:w-full md:w-5/12 md:me-10 lg:w-10/12 m-auto">
           <img
             className="rounded-md h-48 w-full"
             src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
@@ -56,7 +56,7 @@ const MovieDetails = () => {
           />
         </div>
 
-        <div>
+        <div className=" w-full md:w-7/12 lg:w-10/12 m-auto">
           <div className="flex-col gap-3 border-b-2 py-2">
             <label className="text-slate-600 text">Rating</label>
             <p className="text-sm mt-2">{movie?.vote_average}</p>
@@ -64,13 +64,13 @@ const MovieDetails = () => {
 
           <div className="flex-col border-b-2 py-2">
             <label className="text-slate-600 text">Genres</label>
-            <p className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               {filteredGenreIds.map((genre) => (
                 <span className="text-sm mt-2" key={genre.id}>
                   {genre.name}
                 </span>
               ))}
-            </p>
+            </div>
           </div>
 
           <div className="flex-col border-b-2 py-2">
@@ -88,29 +88,32 @@ const MovieDetails = () => {
             <p className="text-md text-sm mt-2">{movie?.original_language}</p>
           </div>
         </div>
+
       </motion.div>
 
       <motion.div
-        className="flex-col my-10 w-8/12 flex justify-between m-auto px-10"
+        className=" flex flex-col justify-between w-full sm:w-10/12 sm:mt-10 sm:m-auto md:w-10/12 md:m-auto lg:w-7/12 lg:my-5 min-w-customOne px-10"
         initial={{ opacity: 0, x: "100vw" }}
         animate={{ opacity: 1, x: 0, transition: { duration: 1.2 } }}
         exit={{ opacity: 0 }}
       >
+
         <div>
           <h1 className="text-2xl my-5"> Movie&apos;s overview</h1>
           <p className="text-lg mb-5"> <span className="text-slate-600">Movie name</span>: &nbsp; {movie?.title}</p>
         </div>
+
         <div>
           <p className="leading-8">{movie?.overview}</p>
         </div>
 
-        <div className="flex-col">
+        <div className="flex-col w-10/12 sm:w-10/12 md:w-10/12  ">
 
-          <h1 className="text-2xl my-5 hover:text-slate-500 hover:cursor-pointer">
+          <h1 className=" text-md sm:text-md md:text-lg my-5 hover:text-slate-500 hover:cursor-pointer">
             Movies You might also like..
           </h1>
 
-          <section className="flex">
+          <section className="flex justify-start items-start">
             <Splide
               options={{
                 arrows: false,
@@ -124,27 +127,28 @@ const MovieDetails = () => {
                 return (
 
                   <SplideSlide key={movie?.movieId}>
-                    <div class="group relative mx-2">
+                    <div class="group relative me-2">
                       <img className="w-full rounded-md transition-all duration-500 hover:opacity-80"
                         src={`https://image.tmdb.org/t/p/w500${movie?.image}`}
                         alt={movie?.title}
                       />
                       <Link to={`/movies/${movie?.movieId}`}>
-                      <p class="hidden opacity-70 group-hover:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-slate-50 text-black py-2 px-4 rounded-lg">
-                        View
-                      </p>
-                    </Link>
-                  </div>
+                        <p class="hidden opacity-70 group-hover:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-slate-50 text-black py-2 px-4 rounded-lg">
+                          View
+                        </p>
+                      </Link>
+                    </div>
 
                   </SplideSlide>
 
-            );
+                );
               })}
-          </Splide>
-        </section>
+            </Splide>
+          </section>
 
 
-    </div>
+        </div>
+
       </motion.div >
 
     </div >

@@ -7,8 +7,12 @@ export default {
   theme: {
     extend: {
       minWidth: {
-        'custom': '400px', // Define a custom minimum width class
+        'custom': '350px', // Define a custom minimum width class
       },
+      maxWidth: {
+        'customOne': '700px',
+        'customTwo': '350px'
+      }
     },
   },
   plugins: [],
