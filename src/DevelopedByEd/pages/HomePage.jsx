@@ -11,8 +11,6 @@ import { useState } from "react";
 
 const HomePage = () => {
 
-  const [isActive, setIsActive] = useState(true)
-
   const status = useSelector(currentStatus);
 
   let content;
@@ -32,7 +30,7 @@ const HomePage = () => {
   return (
       <div className=" w-10/12 m-auto my-5 flex flex-col items-center justify-center">
 
-        <Buttons isActive={isActive} setIsActive={setIsActive} />
+        <Buttons/>
 
         <motion.div
           layout

@@ -7,18 +7,21 @@ import { fetchGenres, fetchMovies } from "./DevelopedByEd/features/MovieSlice";
 import { RouterProvider } from "react-router-dom";
 import { routes } from "./DevelopedByEd/Routes/Route";
 import { ProSidebarProvider } from "react-pro-sidebar";
+import { ChakraProvider } from "@chakra-ui/react";
 
 store.dispatch(fetchMovies());
 store.dispatch(fetchGenres());
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  //<React.StrictMode>
-  <Provider store={store}>
-    <ProSidebarProvider>
-      <RouterProvider router={routes}>
-        <HomePage />
-      </RouterProvider>
-    </ProSidebarProvider>
-  </Provider>
-  //</React.StrictMode>,
+  <ChakraProvider>
+    {/* <React.StrictMode> */}
+      <Provider store={store}>
+        <ProSidebarProvider>
+          <RouterProvider router={routes}>
+            <HomePage />
+          </RouterProvider>
+        </ProSidebarProvider>
+      </Provider>
+    {/* </React.StrictMode> */}
+  </ChakraProvider>
 );

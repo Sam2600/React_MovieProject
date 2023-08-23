@@ -107,7 +107,7 @@ const MovieDetails = () => {
           <p className="leading-8">{movie?.overview}</p>
         </div>
 
-        <div className="flex-col w-10/12 sm:w-10/12 md:w-10/12  ">
+        <div className="flex-col w-10/12 sm:w-10/12 md:w-10/12 lg:w-full ">
 
           <h1 className=" text-md sm:text-md md:text-lg my-5 hover:text-slate-500 hover:cursor-pointer">
             Movies You might also like..
@@ -118,7 +118,7 @@ const MovieDetails = () => {
               options={{
                 arrows: false,
                 drag: "free",
-                perPage: 4,
+                perPage: 5,
                 pagination: false,
                 rewind: true,
               }}>
@@ -127,13 +127,13 @@ const MovieDetails = () => {
                 return (
 
                   <SplideSlide key={movie?.movieId}>
-                    <div class="group relative me-2">
+                    <div className="group relative me-2">
                       <img className="w-full rounded-md transition-all duration-500 hover:opacity-80"
                         src={`https://image.tmdb.org/t/p/w500${movie?.image}`}
                         alt={movie?.title}
                       />
                       <Link to={`/movies/${movie?.movieId}`}>
-                        <p class="hidden opacity-70 group-hover:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-slate-50 text-black py-2 px-4 rounded-lg">
+                        <p className="hidden opacity-70 group-hover:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-slate-50 text-black py-2 px-4 rounded-lg">
                           View
                         </p>
                       </Link>
