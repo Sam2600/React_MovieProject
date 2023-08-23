@@ -10,7 +10,7 @@ const NavBar = ({collapsed, setCollapsed}) => {
 
       <div className="flex gap-5 items-center ps-7 sm:ps-5">
 
-        <FaHamburger className="cursor-pointer hover:text-slate-50" onClick={() => setCollapsed(!collapsed)} />
+        <FaHamburger className="cursor-pointer  hover:text-slate-50" onClick={() => setCollapsed(!collapsed)} />
 
         <Link
           className="flex justify-center items-center transition-all duration-150 hover:text-white"
