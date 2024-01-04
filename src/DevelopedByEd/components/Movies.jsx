@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PaginatedMovies from "./PaginatedMovies";
-import { filteredMovies } from "../states/features/MovieSlice";
-import { useSelector } from "react-redux";
+import { filter, filteredMovies } from "../states/features/MovieSlice";
+import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
 
 const Movies = () => {
@@ -24,6 +24,8 @@ const Movies = () => {
     const newOffset = (e.selected * moviesPerPage) % totalMovies;
     setStartOffset(newOffset);
   };
+
+  const dispatch = useDispatch();
 
   return (
     <div className="flex flex-col my-3 items-center justify-center">
@@ -74,7 +76,16 @@ const Movies = () => {
           activeClassName="bg-slate-500 text-white"
         />
       ) : (
-        <p className="text-2xl">There is no movie for this interest</p>
+        <div className="flex flex-col justify-center align-middle gap-5">
+          <p className="text-2xl">There is no movie for this interest</p>
+          <button
+            onClick={() => dispatch(filter(0))}
+            className=" px-3 py-2 mx-auto text-sm w-6/12 text-white rounded-md bg-slate-600 border border-solid shadow-sm transition-all duration-300
+        hover:cursor-pointer hover:text-black hover:border-black hover:outline-slate-600 hover:bg-white hover:outline-8"
+          >
+            Back to all categories
+          </button>
+        </div>
       )}
     </div>
   );
