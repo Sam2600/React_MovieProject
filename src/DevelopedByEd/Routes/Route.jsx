@@ -1,8 +1,8 @@
-import { createBrowserRouter, Link} from "react-router-dom";
+import { createBrowserRouter, Link } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import DefaultLayout from "../Layout/DefaultLayout";
 import MovieDetails from "../pages/MovieDetails";
-import { TesingPage } from "../pages/TesingPage";
+import { TestingPage } from "../pages/TestingPage";
 
 export const routes = createBrowserRouter([
   {
@@ -15,11 +15,11 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/movies/:id",
-        element: <MovieDetails />
+        element: <MovieDetails />,
       },
       {
         path: "/testing",
-        element: <TesingPage />
+        element: <TestingPage />,
       },
     ],
   },
@@ -28,10 +28,10 @@ export const routes = createBrowserRouter([
     path: "/*",
     element: (
       <div className="flex flex-col items-center justify-center">
-        <h1 className="text-3xl text-black my-14">
-          No Process in this page.
-        </h1>
-        <Link className="underline text-blue-400 text-lg" to="/">Back To Home</Link>
+        <h1 className="text-3xl text-black my-14">No Process in this page.</h1>
+        <Link className="underline text-blue-400 text-lg" to="/">
+          Back To Home
+        </Link>
       </div>
     ),
   },

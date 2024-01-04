@@ -3,15 +3,13 @@ import {
   searchedMovieById,
   genres,
   selectAllMovies,
-} from "../features/MovieSlice";
+} from "../states/features/MovieSlice";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
-
 const MovieDetails = () => {
-
   const { id } = useParams(); // catching route's param
   const movie = useSelector((state) => searchedMovieById(state, Number(id))); // getting the Movie filtered by param(id)
   const movies = useSelector(selectAllMovies);
@@ -41,7 +39,6 @@ const MovieDetails = () => {
 
   return (
     <div className="flex flex-wrap w-11/12 p-2">
-
       <motion.div
         className="min-w-custom flex flex-col w-4/12 sm:flex-col sm:w-8/12 sm:ms-12 md:flex-row md:gap-3 md:w-11/12 lg:flex-col lg:my-5 lg:w-4/12 px-10 m-auto"
         initial={{ opacity: 0, x: "-100vw" }}
@@ -88,7 +85,6 @@ const MovieDetails = () => {
             <p className="text-md text-sm mt-2">{movie?.original_language}</p>
           </div>
         </div>
-
       </motion.div>
 
       <motion.div
@@ -97,10 +93,13 @@ const MovieDetails = () => {
         animate={{ opacity: 1, x: 0, transition: { duration: 1.2 } }}
         exit={{ opacity: 0 }}
       >
-
         <div>
           <h1 className="text-2xl my-5"> Movie&apos;s overview</h1>
-          <p className="text-lg mb-5"> <span className="text-slate-600">Movie name</span>: &nbsp; {movie?.title}</p>
+          <p className="text-lg mb-5">
+            {" "}
+            <span className="text-slate-600">Movie name</span>: &nbsp;{" "}
+            {movie?.title}
+          </p>
         </div>
 
         <div>
@@ -108,10 +107,13 @@ const MovieDetails = () => {
         </div>
 
         <div className="flex-col w-10/12 sm:w-10/12 md:w-10/12 lg:w-full ">
+          <p className=" text-md sm:text-md text-black md:text-lg my-5 hover:text-slate-500 hover:cursor-pointer">
+            Movies You might also like.
+          </p>
 
-          <h1 className=" text-md sm:text-md md:text-lg my-5 hover:text-slate-500 hover:cursor-pointer">
-            Movies You might also like..
-          </h1>
+          <p className="text-md sm:text-sm md:text-sm my-5 hover:text-slate-500 hover:cursor-pointer">
+            Scroll horizontal to explore more
+          </p>
 
           <section className="flex justify-start items-start">
             <Splide
@@ -121,14 +123,14 @@ const MovieDetails = () => {
                 perPage: 5,
                 pagination: false,
                 rewind: true,
-              }}>
-
+              }}
+            >
               {youMightAlsoLikeMovies.map((movie) => {
                 return (
-
                   <SplideSlide key={movie?.movieId}>
                     <div className="group relative me-2">
-                      <img className="w-full rounded-md transition-all duration-500 hover:opacity-80"
+                      <img
+                        className="w-full rounded-md transition-all duration-500 hover:opacity-80"
                         src={`https://image.tmdb.org/t/p/w500${movie?.image}`}
                         alt={movie?.title}
                       />
@@ -138,20 +140,14 @@ const MovieDetails = () => {
                         </p>
                       </Link>
                     </div>
-
                   </SplideSlide>
-
                 );
               })}
             </Splide>
           </section>
-
-
         </div>
-
-      </motion.div >
-
-    </div >
+      </motion.div>
+    </div>
   );
 };
 

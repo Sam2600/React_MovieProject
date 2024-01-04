@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -42,6 +43,7 @@ const MovieSlice = createSlice({
       const filtereds = state.movies.filter((movie) =>
         movie.genre_ids.includes(action.payload)
       );
+
       state.filterdMovies = filtereds;
     },
 
@@ -50,7 +52,7 @@ const MovieSlice = createSlice({
         state.filterdMovies = state.movies;
       }
 
-      const searched = state.filterdMovies.filter((movie) =>
+      const searched = state.movies.filter((movie) =>
         movie.original_title
           .toLowerCase()
           .includes(action.payload.toLowerCase())
@@ -62,8 +64,7 @@ const MovieSlice = createSlice({
 
   extraReducers: (builer) => {
     builer
-      .addCase(fetchMovies.pending, (state, action) => {
-        console.log(action.payload);
+      .addCase(fetchMovies.pending, (state) => {
         state.status = "pending";
       })
 
@@ -85,12 +86,18 @@ const MovieSlice = createSlice({
 });
 
 export const selectAllMovies = (state) => state.movie.movies;
+
 export const currentStatus = (state) => state.movie.status;
+
 export const filteredMovies = (state) => state.movie.filterdMovies;
+
 export const genere_id = (state) => state.movie.genere_id;
+
 export const genres = (state) => state.movie.genres;
+
 export const searchedMovieById = (state, movieId) =>
   state.movie.movies.find((movie) => movie.id === movieId);
 
 export default MovieSlice.reducer;
+
 export const { filter, searchMovie } = MovieSlice.actions;

@@ -1,7 +1,6 @@
-import React from 'react'
-import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from "react-pro-sidebar";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
-import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
+/* eslint-disable react/prop-types */
+import { FaHome } from "react-icons/fa";
+import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import ReceiptRoundedIcon from "@mui/icons-material/ReceiptRounded";
 import BarChartRoundedIcon from "@mui/icons-material/BarChartRounded";
 import TimelineRoundedIcon from "@mui/icons-material/TimelineRounded";
@@ -15,19 +14,20 @@ import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import ShieldRoundedIcon from "@mui/icons-material/ShieldRounded";
 import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { BuildCircle } from "@mui/icons-material";
 
-
-export const SideBar = ({collapsed}) => {
-
+export const SideBar = ({ collapsed }) => {
   return (
     <div>
-      <Sidebar
-        collapsed={collapsed}
-      >
+      <Sidebar collapsed={collapsed}>
         <Menu>
-          <Link to={"/"}><MenuItem icon={<MenuRoundedIcon />}> QUICKPAY</MenuItem></Link>
-          <Link to={"/testing"}><MenuItem icon={<GridViewRoundedIcon />}> Testing </MenuItem></Link>
+          <Link to={"/"}>
+            <MenuItem icon={<FaHome size={20} />}> Home </MenuItem>
+          </Link>
+          <Link to={"/testing"}>
+            <MenuItem icon={<BuildCircle />}> Testing </MenuItem>
+          </Link>
           <MenuItem icon={<ReceiptRoundedIcon />}> Invoices </MenuItem>
           <SubMenu label="Charts" icon={<BarChartRoundedIcon />}>
             <MenuItem icon={<TimelineRoundedIcon />}> Timeline Chart </MenuItem>
@@ -51,5 +51,5 @@ export const SideBar = ({collapsed}) => {
         </Menu>
       </Sidebar>
     </div>
-  )
-}
+  );
+};
